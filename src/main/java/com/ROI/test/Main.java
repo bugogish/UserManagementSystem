@@ -20,9 +20,6 @@ public class Main {
         return (evt) -> Arrays.asList(
                 "jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong".split(","))
                 .forEach(
-                        a -> {
-                            User account = userRepository.save(new User(a,
-                                    "password"));
-                        });
+                        a -> userRepository.save(new User(a, "password")));
     }
 }

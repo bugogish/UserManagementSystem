@@ -39,7 +39,7 @@ public class User {
     private Date lastUpdatedTimestamp;
 
     //Can we do it as a separate class?
-    private Address address;
+//    private Address address;
 
     public User(String name, String password) {
         this.firstName = name;
@@ -47,6 +47,10 @@ public class User {
     }
 
     User() {
+    }
+
+    public Long getId() {
+        return id;
     }
 }
 

@@ -52,5 +52,37 @@ public class User {
     public Long getId() {
         return id;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public Date getLastUpdatedTimestamp() {
+        return lastUpdatedTimestamp;
+    }
 }
 

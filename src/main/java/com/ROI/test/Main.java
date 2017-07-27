@@ -17,9 +17,7 @@ public class Main {
 
     @Bean
     CommandLineRunner init(UserRepository userRepository) {
-        return (evt) -> Arrays.asList(
-                "jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong".split(","))
-                .forEach(
-                        a -> userRepository.save(new User(a, "password")));
+        return (evt) -> Arrays.stream("jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong".split(",")).
+                forEach(a -> userRepository.save(new User(a, "password")));
     }
 }

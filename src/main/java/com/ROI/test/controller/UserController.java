@@ -48,6 +48,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+
         if (userRepository.findByUserName(user.getUserName()).isPresent()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }

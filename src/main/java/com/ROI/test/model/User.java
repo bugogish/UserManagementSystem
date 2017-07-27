@@ -38,15 +38,22 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedTimestamp;
 
-    //Can we do it as a separate class?
-//    private Address address;
+    @Embedded
+    private Address address;
 
     public User(String name, String password) {
         this.firstName = name;
         this.password = password;
     }
 
-    User() {
+    User() {}
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Long getId() {
@@ -57,32 +64,68 @@ public class User {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUserName() {
         return userName;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getBirthday() {
         return birthday;
     }
 
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public boolean isActive() {
         return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
     public Date getLastUpdatedTimestamp() {
         return lastUpdatedTimestamp;
+    }
+
+    public void setLastUpdatedTimestamp(Date lastUpdatedTimestamp) {
+        this.lastUpdatedTimestamp = lastUpdatedTimestamp;
     }
 }
 

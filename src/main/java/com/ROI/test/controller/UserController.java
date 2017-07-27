@@ -48,11 +48,9 @@ public class UserController {
 
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
-
-//        if (userService.isUserExist(user)) {
-//            System.out.println("A User with name " + user.getName() + " already exist");
-//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//        }
+        if (userRepository.findByUserName(user.getUserName()).isPresent()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
 
         userRepository.save(user);
 
@@ -61,8 +59,8 @@ public class UserController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-//    private void validateUser(String userId) {
-//        this.accountRepository.findByUsername(userId).orElseThrow(
-//                () -> new UserNotFoundException(userId));
+//    private void validateUser(Long userId) {
+//        User user = userRepository.findOne(userId);
+//        (() -> new UserNotFoundException(userId));
 //    }
 }

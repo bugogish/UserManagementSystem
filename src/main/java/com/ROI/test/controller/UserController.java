@@ -2,20 +2,26 @@ package com.ROI.test.controller;
 
 import com.ROI.test.model.User;
 import com.ROI.test.model.UserRepository;
+import com.ROI.test.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class UserController {
     private final UserRepository userRepository;
+
+    @Autowired
+    private SecurityService securityService;
 
     @Autowired
     UserController(UserRepository userRepository) {
@@ -47,22 +53,27 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+    @RequestMapping(value = "/new_user", method = RequestMethod.GET)
+    public String registration(Model model) {
+        model.addAttribute("userForm", new User());
 
-        if (userRepository.findByUserName(user.getUserName()).isPresent()) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-
-        userRepository.save(user);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return "new_user";
     }
 
-//    private void validateUser(Long userId) {
-//        User user = userRepository.findOne(userId);
-//        (() -> new UserNotFoundException(userId));
-//    }
+    @RequestMapping(value = "/new_user/", method = RequestMethod.POST)
+    public String createUser(@ModelAttribute("userForm") User userForm,
+                                           BindingResult bindingResult,
+                                           Model model) {
+//            userValidator.validate(userForm, bindingResult);
+
+            if (bindingResult.hasErrors()) {
+                return "new_user";
+            }
+
+            userRepository.save(userForm);
+
+            securityService.autologin(userForm.getUserName(), userForm.getPassword());
+
+            return "redirect:/ums";
+    }
 }

@@ -1,11 +1,28 @@
 package com.ROI.test;
 
+import com.ROI.test.model.User;
+import com.ROI.test.model.UserRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+    }
+
+    @Bean
+    CommandLineRunner init(UserRepository userRepository) {
+        return (evt) -> Arrays.asList(
+                "jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong".split(","))
+                .forEach(
+                        a -> {
+                            User account = userRepository.save(new User(a,
+                                    "password"));
+                        });
     }
 }

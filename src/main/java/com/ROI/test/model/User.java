@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 //User {id, firsname, lastname, username, password, email, birthday, isActive, createdTimestamp,
 //        lastUpdatedTimestamp, address}
@@ -40,6 +40,11 @@ public class User {
 
     //Can we do it as a separate class?
     private Address address;
+
+    public User(String name, String password) {
+        this.firstName = name;
+        this.password = password;
+    }
 
     User() {
     }

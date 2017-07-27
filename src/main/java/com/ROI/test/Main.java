@@ -4,11 +4,15 @@ import com.ROI.test.model.User;
 import com.ROI.test.model.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Arrays;
 
+@ComponentScan
+@EnableAutoConfiguration
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {

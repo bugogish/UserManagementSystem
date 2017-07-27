@@ -29,5 +29,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.security:spring-security-ldap:3.2.4.RELEASE")
     compile("org.apache.directory.server:apacheds-server-jndi:1.5.5")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     testCompile("junit:junit")
 }

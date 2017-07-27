@@ -15,6 +15,7 @@ import java.util.Date;
 //        This will prevent users from using getter of your Date and modifying its state.
 
 @Entity
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue

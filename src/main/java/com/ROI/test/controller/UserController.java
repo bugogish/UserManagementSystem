@@ -7,10 +7,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -21,6 +21,7 @@ public class UserController {
     UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
 
     @RequestMapping(value = "/user/", method = RequestMethod.GET)
     ResponseEntity<List<User>> getUsers() {

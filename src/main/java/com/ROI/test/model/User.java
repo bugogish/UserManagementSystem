@@ -48,7 +48,7 @@ public class User {
     private Address address;
 
     public User(String name, String password) {
-        this.firstName = name;
+        this.userName = name;
         this.password = password;
     }
 
@@ -75,6 +75,10 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getFirstName() {

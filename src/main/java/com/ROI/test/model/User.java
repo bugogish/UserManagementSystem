@@ -9,6 +9,11 @@ import java.util.Date;
 //User {id, firsname, lastname, username, password, email, birthday, isActive, createdTimestamp,
 //        lastUpdatedTimestamp, address}
 
+//Just remember that if
+//        you're working with Date objects you should do a defensive copy of your Date object
+//        (so you should return something like new Date(oldDate.getTime()); instead of plain  return oldDate).
+//        This will prevent users from using getter of your Date and modifying its state.
+
 @Entity
 public class User {
     @Id
@@ -47,6 +52,17 @@ public class User {
     }
 
     User() {}
+
+    @PrePersist
+    void createdAt() {
+        this.createdTimestamp = this.lastUpdatedTimestamp = new Date();
+    }
+
+    @PreUpdate
+    void updatedAt() {
+        this.lastUpdatedTimestamp = new Date();
+    }
+
 
     public Address getAddress() {
         return address;
@@ -113,7 +129,7 @@ public class User {
     }
 
     public Date getCreatedTimestamp() {
-        return createdTimestamp;
+        return new Date(createdTimestamp.getTime());
     }
 
     public void setCreatedTimestamp(Date createdTimestamp) {
@@ -121,7 +137,7 @@ public class User {
     }
 
     public Date getLastUpdatedTimestamp() {
-        return lastUpdatedTimestamp;
+        return new Date(lastUpdatedTimestamp.getTime());
     }
 
     public void setLastUpdatedTimestamp(Date lastUpdatedTimestamp) {

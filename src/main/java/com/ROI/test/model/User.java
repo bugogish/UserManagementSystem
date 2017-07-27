@@ -40,5 +40,8 @@ public class User {
 
     //Can we do it as a separate class?
     private Address address;
+
+    User() {
+    }
 }
 

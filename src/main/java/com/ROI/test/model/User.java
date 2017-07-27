@@ -24,7 +24,8 @@ public class User {
     @JsonIgnore
     private String password;
 
-    private Email email; //EMAIL??? hybernate
+    @Email
+    private String email; //EMAIL??? hybernate
 
     @Temporal(TemporalType.DATE)
     private Date birthday;

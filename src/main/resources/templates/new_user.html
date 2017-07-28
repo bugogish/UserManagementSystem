@@ -16,15 +16,19 @@
         <h3 class="form-signin">Create New User</h3>
         <p th:text="${error_message}" style="color:red"></p>
         <form class="form-signin" action="#" th:action="@{/new_user}" th:object="${user}" method="post">
-            <p>Username: <input type="text" th:field="*{userName}"
-                                th:class="${#fields.hasErrors('userName')}? fieldError"/></p>
-            <p>Password: <input type="text" th:field="*{password}" /></p>
+            <p>Username: <input type="text" th:field="*{userName}"/></p>
+            <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Name error</p>
+            <p>Password: <input type="password" th:field="*{password}" /></p>
             <p>Email: <input type="email" th:field="*{email}" /></p>
             <p>First Name: <input type="text" th:field="*{firstName}" /></p>
             <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
             <p>Birthday: <input type="date" th:field="*{birthday}" /></p>
-            <!--<h4>Address Information</h4>-->
-            <!--<p>First Name: <input type="text" th:field="*{firstName}" /></p>-->
+            <h4>Address Information</h4>
+            <p>Zip Code: <input type="number" th:field="*{address.zip}" /></p>
+            <p>Country: <input type="text" th:field="*{address.country}" /></p>
+            <p>City: <input type="text" th:field="*{address.city}" /></p>
+            <p>District: <input type="text" th:field="*{address.district}" /></p>
+            <p>Street: <input type="text" th:field="*{address.street}" /></p>
             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
         </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

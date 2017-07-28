@@ -76,26 +76,27 @@ public class UserController {
         System.out.println(user.getUserName());
 
         userValidator.validate(user, bindingResult);
+        System.out.println(user.getAddress().getZip());
 
         if (bindingResult.hasErrors()) {
-//            System.out.println("BINDING RESULT HAS ERRORS");
-//            StringBuilder error_message = new StringBuilder("Errors list: ");
-//
-//            for (Object object : bindingResult.getAllErrors()) {
-//                boolean isAlreadyPrinted = false;
-//                if(object instanceof FieldError) {
-//                    FieldError fieldError = (FieldError) object;
-////                    error_message.append(fieldError.getCode()).append(" ");
-//                    error_message.append(messageSource.getMessage(fieldError, null));
-//                    isAlreadyPrinted = true;
-//                }
-//                if(object instanceof ObjectError && !isAlreadyPrinted) {
-//                    ObjectError objectError = (ObjectError) object;
-//                    error_message.append(messageSource.getMessage(objectError, null));
-//                }
-//            }
-//
-//            model.addAttribute("error_message", error_message.toString());
+            System.out.println("BINDING RESULT HAS ERRORS");
+            StringBuilder error_message = new StringBuilder("Errors list: ");
+
+            for (Object object : bindingResult.getAllErrors()) {
+                boolean isAlreadyPrinted = false;
+                if(object instanceof FieldError) {
+                    FieldError fieldError = (FieldError) object;
+//                    error_message.append(fieldError.getCode()).append(" ");
+                    error_message.append(messageSource.getMessage(fieldError, null));
+                    isAlreadyPrinted = true;
+                }
+                if(object instanceof ObjectError && !isAlreadyPrinted) {
+                    ObjectError objectError = (ObjectError) object;
+                    error_message.append(messageSource.getMessage(objectError, null));
+                }
+            }
+
+            model.addAttribute("error_message", error_message.toString());
             return "new_user";
         }
 

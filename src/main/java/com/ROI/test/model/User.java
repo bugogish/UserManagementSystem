@@ -31,7 +31,7 @@ public class User {
     private String password;
 
     @Email
-    private String email; //EMAIL??? hybernate
+    private String email;
 
     @Temporal(TemporalType.DATE)
     private Date birthday;
@@ -52,7 +52,7 @@ public class User {
         this.password = password;
     }
 
-    User() {}
+    public User() {}
 
     @PrePersist
     void createdAt() {

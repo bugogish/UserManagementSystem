@@ -17,12 +17,20 @@ public class MainPageController {
     }
 
     @GetMapping({"/ums", "/"})
-    public String searchUsersByUsername(@RequestParam(name = "username", required=false) String userName, Model model) {
+    public String searchUsersByUsername(@RequestParam(name = "username", required=false) String userName,
+                                        @RequestParam(name = "email", required=false) String email,
+                                        Model model) {
         if (userName != null) {
             model.addAttribute("users", userRepository.findByUserNameContaining(userName));
         }
         else {
-            model.addAttribute("users", userRepository.findAll());
+            System.out.println("ELSE BRANCH OF PARAMETERS CHECK (userName != null)");
+            if (email != null) {
+                model.addAttribute("users", userRepository.findByEmail(email));
+            }
+            else{
+                model.addAttribute("users", userRepository.findAll());
+            }
         }
         return "ums";
     }

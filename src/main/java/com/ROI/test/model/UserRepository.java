@@ -3,14 +3,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUserName(String userName);
 
-    Collection<User> findByBirthday(Date birthday);
+    List<User> findByBirthday(Date birthday);
 
-    Optional<User> findByEmail(String email);
+    List<User> findByEmail(String email);
 
     Collection<User> findByUserNameContaining(String partOfUsername);
 }

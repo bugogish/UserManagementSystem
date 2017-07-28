@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
 
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+>
     <head lang="en">
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" media="all"
@@ -17,18 +16,38 @@
         <div class="dot"></div>
         <ul>
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/new_user">Create New User</a></li>
             <li><a href="#">Portfolio</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">More</a></li>
         </ul>
     </nav>
 <div class="search">
-    <h3>Search users by username:</h3>
-    <form action="ums">
-        <p>Username: <input type="text" name="username"/></p>
-        <p><input type="submit" value="Search!" /></p>
-    </form>
+    <table>
+        <tr>
+            <td>
+                <h3>Search users by username:</h3>
+                <form action="ums">
+                    <p>Username: <input type="text" name="username"/></p>
+                    <p><input type="submit" value="Search!" /></p>
+                </form>
+            </td>
+            <td>
+                <h3>Search users by e-mail:</h3>
+                <form action="ums">
+                    <p>E-mail: <input type="text" name="email"/></p>
+                    <p><input type="submit" value="Search!" /></p>
+                </form>
+            </td>
+            <td>
+                <h3>Search users by birthday:</h3>
+                <form action="ums">
+                    <p>Birthday: <input type="text" name="birthday"/></p>
+                    <p><input type="submit" value="Search!" /></p>
+                </form>
+            </td>
+        </tr>
+    </table>
 </div>
 <div class="users">
     <h1>Usernames in database</h1>

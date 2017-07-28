@@ -4,7 +4,7 @@
     </head>
     <body>
         <h3>Welcome, Enter The Employee Details</h3>
-        <form:form method="POST" action="/spring-mvc-xml/addEmployee" modelAttribute="employee">
+        <form:form method="POST" action="/spring-mvc-xml/addEmployee" modelAttribute="userForm">
              <table>
                 <tr>
                     <td><form:label path="name">Name</form:label></td>

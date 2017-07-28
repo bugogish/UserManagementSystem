@@ -20,5 +20,4 @@ public class MainPageController {
         model.addAttribute("users", userRepository.findAll());
         return "ums";
     }
-
 }

@@ -4,15 +4,16 @@ import com.ROI.test.model.User;
 import com.ROI.test.model.UserRepository;
 import com.ROI.test.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -54,18 +55,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/new_user", method = RequestMethod.GET)
-    public String registration(Model model) {
+    public String createUser(Model model) {
         model.addAttribute("userForm", new User());
 
         return "new_user";
     }
 
-    @RequestMapping(value = "/new_user/", method = RequestMethod.POST)
+    @RequestMapping(value = "/new_user", method = RequestMethod.POST)
     public String createUser(@ModelAttribute("userForm") User userForm,
                                            BindingResult bindingResult,
                                            Model model) {
 //            userValidator.validate(userForm, bindingResult);
 
+        System.out.println(userForm.getUserName());
             if (bindingResult.hasErrors()) {
                 return "new_user";
             }

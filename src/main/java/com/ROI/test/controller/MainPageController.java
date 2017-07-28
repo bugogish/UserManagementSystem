@@ -1,6 +1,5 @@
 package com.ROI.test.controller;
 
-import com.ROI.test.model.User;
 import com.ROI.test.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

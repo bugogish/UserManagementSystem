@@ -24,11 +24,11 @@ public class MainPageController {
             model.addAttribute("users", userRepository.findByUserNameContaining(userName));
         }
         else {
-            System.out.println("ELSE BRANCH OF PARAMETERS CHECK (userName != null)");
             if (email != null) {
                 model.addAttribute("users", userRepository.findByEmail(email));
             }
             else{
+                // TODO make search by birthday
                 model.addAttribute("users", userRepository.findAll());
             }
         }

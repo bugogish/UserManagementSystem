@@ -33,4 +33,11 @@ public class Main extends SpringBootServletInitializer {
         return (evt) -> Arrays.stream("jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong,root".split(",")).
                 forEach(a -> userRepository.save(new User(a, "pw", "email@gmail.com")));
     }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("/validation");
+        return messageSource;
+    }
 }

@@ -20,8 +20,7 @@ public class MainPageController {
     @GetMapping({"/ums", "/"})
     public String searchUsersByUsername(@RequestParam(name = "username", required=false) String userName, Model model) {
         if (userName != null) {
-            User user = userRepository.findByUserName(userName).orElse(null);
-            model.addAttribute("users", user);
+            model.addAttribute("users", userRepository.findByUserNameContaining(userName));
         }
         else {
             model.addAttribute("users", userRepository.findAll());

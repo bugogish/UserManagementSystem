@@ -11,5 +11,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Collection<User> findByBirthday(Date birthday);
 
     Optional<User> findByEmail(String email);
+
+    Collection<User> findByUserNameContaining(String partOfUsername);
 }
 

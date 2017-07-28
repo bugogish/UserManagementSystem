@@ -74,8 +74,6 @@ public class UserController {
 
             userRepository.save(userForm);
 
-            securityService.autologin(userForm.getUserName(), userForm.getPassword());
-
             return "redirect:/ums";
     }
 }

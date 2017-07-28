@@ -4,15 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 //User {id, firsname, lastname, username, password, email, birthday, isActive, createdTimestamp,
 //        lastUpdatedTimestamp, address}
-
-//Just remember that if
-//        you're working with Date objects you should do a defensive copy of your Date object
-//        (so you should return something like new Date(oldDate.getTime()); instead of plain  return oldDate).
-//        This will prevent users from using getter of your Date and modifying its state.
 
 @Entity
 @Table(name = "User")
@@ -47,9 +43,10 @@ public class User {
     @Embedded
     private Address address;
 
-    public User(String name, String password) {
+    public User(@NotNull String name, @NotNull String password, String email) {
         this.userName = name;
         this.password = password;
+        this.email = email;
     }
 
     public User() {}

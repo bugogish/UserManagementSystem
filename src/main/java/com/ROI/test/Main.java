@@ -29,6 +29,6 @@ public class Main extends SpringBootServletInitializer {
     @Bean
     CommandLineRunner init(UserRepository userRepository) {
         return (evt) -> Arrays.stream("jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong,root".split(",")).
-                forEach(a -> userRepository.save(new User(a, "pw")));
+                forEach(a -> userRepository.save(new User(a, "pw", "email@gmail.com")));
     }
 }

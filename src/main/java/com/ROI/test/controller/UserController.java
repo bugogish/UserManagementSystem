@@ -2,6 +2,7 @@ package com.ROI.test.controller;
 
 import com.ROI.test.model.User;
 import com.ROI.test.model.UserRepository;
+import com.ROI.test.model.UserValidator;
 import com.ROI.test.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +23,15 @@ public class UserController {
     private SecurityService securityService;
 
     @Autowired
+    private UserValidator userValidator;
+
+    @Autowired
     UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
 
-    @RequestMapping(value = "/user/", method = RequestMethod.GET)
+    @GetMapping(value = "/user/")
     ResponseEntity<List<User>> getUsers() {
         List<User> users = userRepository.findAll();
 
@@ -38,8 +42,7 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/{id}",
-            method = RequestMethod.GET,
+    @GetMapping(value = "/user/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<User> getUserByID(@PathVariable("id") Long id) {
          User user = userRepository.findOne(id);
@@ -64,7 +67,7 @@ public class UserController {
                              Model model) {
         System.out.println(user.getUserName());
 
-//        userValidator.validate(user, bindingResult);
+        userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "new_user";

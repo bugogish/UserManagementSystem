@@ -59,11 +59,19 @@ public class UserController {
     }
 
     @PostMapping("/new_user")
-    public String createUser(@ModelAttribute User user) {
+    public String createUser(@ModelAttribute User user,
+                             BindingResult bindingResult,
+                             Model model) {
         System.out.println(user.getUserName());
+
+//        userValidator.validate(user, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "new_user";
+        }
 
         userRepository.save(user);
 
-        return "/new_user";
+        return "redirect:/ums";
     }
 }

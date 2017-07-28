@@ -9,6 +9,28 @@
         <title>User Management System</title>
     </head>
     <body>
+        <form action="/new_user">
+            <input type="submit" value="new_user" />
+        </form>
+
+        <h1>Search users by username:</h1>
+        <form action="ums">
+            <p>Username: <input type="text" /></p>
+            <p><input type="submit" value="Search!" /></p>
+        </form>
+
+        <h1>Usernames in database</h1>
+        <table class="data" border="1">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.userName}"></td>
+            </tr>
+        </table>
+
         <h1>Usernames in database</h1>
         <ul th:each="user : ${users}">
             <li th:text="${user.userName}"></li>

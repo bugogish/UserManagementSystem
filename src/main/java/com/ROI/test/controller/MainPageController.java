@@ -15,7 +15,7 @@ public class MainPageController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = {"/ums", "/"})
+    @GetMapping({"/ums", "/"})
     public String users(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "ums";

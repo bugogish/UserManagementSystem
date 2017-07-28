@@ -5,12 +5,16 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head lang="en">
+        <link rel="stylesheet" type="text/css" media="all"
+              href="../../css/common.css" th:href="@{/css/common.css}" />
+        <link rel="stylesheet" type="text/css" media="all"
+              href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
         <meta charset="UTF-8" />
         <title>User Management System</title>
     </head>
     <body>
-        <h3>Welcome, Enter The Employee Details</h3>
-        <form action="#" th:action="@{/new_user}" th:object="${user}" method="post">
+        <h3 class="form-signin">Create New User</h3>
+        <form class="form-signin" action="#" th:action="@{/new_user}" th:object="${user}" method="post">
             <p>Username: <input type="text" th:field="*{userName}" /></p>
             <p>Password: <input type="text" th:field="*{password}" /></p>
             <p>Email: <input type="text" th:field="*{email}" /></p>

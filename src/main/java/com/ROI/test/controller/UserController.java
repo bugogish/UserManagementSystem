@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,6 +72,23 @@ public class UserController {
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
+            System.out.println("BINDING RESULT HAS ERRORS");
+            StringBuilder error_message = new StringBuilder("Errors list: ");
+
+            for (Object object : bindingResult.getAllErrors()) {
+                boolean isAlreadyPrinted = false;
+                if(object instanceof FieldError) {
+                    FieldError fieldError = (FieldError) object;
+                    error_message.append(fieldError.getCode()).append(" ");
+                    isAlreadyPrinted = true;
+                }
+                if(object instanceof ObjectError && !isAlreadyPrinted) {
+                    ObjectError objectError = (ObjectError) object;
+                    error_message.append(objectError.getCode()).append(" ");
+                }
+            }
+
+            model.addAttribute("error_message", error_message.toString());
             return "new_user";
         }
 

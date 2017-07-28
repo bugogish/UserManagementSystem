@@ -5,6 +5,9 @@ import com.ROI.test.model.UserRepository;
 import com.ROI.test.model.UserValidator;
 import com.ROI.test.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     UserController(UserRepository userRepository) {
@@ -72,23 +78,24 @@ public class UserController {
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            System.out.println("BINDING RESULT HAS ERRORS");
-            StringBuilder error_message = new StringBuilder("Errors list: ");
-
-            for (Object object : bindingResult.getAllErrors()) {
-                boolean isAlreadyPrinted = false;
-                if(object instanceof FieldError) {
-                    FieldError fieldError = (FieldError) object;
-                    error_message.append(fieldError.getCode()).append(" ");
-                    isAlreadyPrinted = true;
-                }
-                if(object instanceof ObjectError && !isAlreadyPrinted) {
-                    ObjectError objectError = (ObjectError) object;
-                    error_message.append(objectError.getCode()).append(" ");
-                }
-            }
-
-            model.addAttribute("error_message", error_message.toString());
+//            System.out.println("BINDING RESULT HAS ERRORS");
+//            StringBuilder error_message = new StringBuilder("Errors list: ");
+//
+//            for (Object object : bindingResult.getAllErrors()) {
+//                boolean isAlreadyPrinted = false;
+//                if(object instanceof FieldError) {
+//                    FieldError fieldError = (FieldError) object;
+////                    error_message.append(fieldError.getCode()).append(" ");
+//                    error_message.append(messageSource.getMessage(fieldError, null));
+//                    isAlreadyPrinted = true;
+//                }
+//                if(object instanceof ObjectError && !isAlreadyPrinted) {
+//                    ObjectError objectError = (ObjectError) object;
+//                    error_message.append(messageSource.getMessage(objectError, null));
+//                }
+//            }
+//
+//            model.addAttribute("error_message", error_message.toString());
             return "new_user";
         }
 

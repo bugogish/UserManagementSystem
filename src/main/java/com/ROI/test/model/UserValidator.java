@@ -23,15 +23,15 @@ public class UserValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty");
         if (user.getUserName().length() < 6 || user.getUserName().length() > 32) {
-            errors.rejectValue("userName", "Size.userForm.username");
+            errors.rejectValue("userName", "Size.user.username");
         }
         if (userRepository.findByUserName(user.getUserName()) != null) {
-            errors.rejectValue("userName", "Duplicate.userForm.username");
+            errors.rejectValue("userName", "Duplicate.user.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "Size.userForm.password");
+            errors.rejectValue("password", "Size.user.password");
         }
     }
 }

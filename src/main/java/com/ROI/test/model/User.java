@@ -47,6 +47,7 @@ public class User {
         this.userName = name;
         this.password = password;
         this.email = email;
+        this.isActive = true;
     }
 
     public User() {}

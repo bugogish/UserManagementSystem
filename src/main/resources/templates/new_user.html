@@ -16,10 +16,15 @@
         <h3 class="form-signin">Create New User</h3>
         <p th:text="${error_message}" style="color:red"></p>
         <form class="form-signin" action="#" th:action="@{/new_user}" th:object="${user}" method="post">
-            <p>Username: <input type="text" th:field="*{userName}" /></p>
+            <p>Username: <input type="text" th:field="*{userName}"
+                                th:class="${#fields.hasErrors('userName')}? fieldError"/></p>
             <p>Password: <input type="text" th:field="*{password}" /></p>
-            <p>Email: <input type="text" th:field="*{email}" /></p>
+            <p>Email: <input type="email" th:field="*{email}" /></p>
             <p>First Name: <input type="text" th:field="*{firstName}" /></p>
+            <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
+            <p>Birthday: <input type="date" th:field="*{birthday}" /></p>
+            <!--<h4>Address Information</h4>-->
+            <!--<p>First Name: <input type="text" th:field="*{firstName}" /></p>-->
             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
         </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
